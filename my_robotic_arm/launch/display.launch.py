@@ -37,6 +37,13 @@ def generate_launch_description():
     spawn_robot_launch = os.path.join(pkg_share, 'launch', 'spawn_robot.launch.py')
     controllers_launch = os.path.join(pkg_share, 'launch', 'controllers.launch.py')
     rviz_launch = os.path.join(pkg_share, 'launch', 'rviz.launch.py')
+
+    bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=['/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock'],
+        output='screen'
+    )
     
     # 1. Robot State Publisher (starts immediately)
     robot_state_publisher = IncludeLaunchDescription(
@@ -79,4 +86,5 @@ def generate_launch_description():
         spawn_robot,
         controllers,
         rviz,
+        bridge
     ])

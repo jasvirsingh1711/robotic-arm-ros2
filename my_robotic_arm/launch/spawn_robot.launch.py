@@ -14,7 +14,7 @@ def generate_launch_description():
         package='ros_gz_sim',
         executable='create',
         arguments=[
-            '-name', 'my_arm',
+            '-name', 'my_robotic_arm',
             '-topic', 'robot_description',
             '-x', '0', '-y', '0', '-z', '0.05', 
             '-R', '0.0',  # Roll (X-axis rotation) 

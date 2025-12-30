@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
-     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
-     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot name="arm_urdf">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="arm_urdf">
+    
+    <xacro:arg name="controllers_yaml" default="undefined"/>
+
     <material name="black">
         <color rgba="0.15 0.15 0.15 1.0"/>
     </material>
@@ -68,7 +68,6 @@
         <dynamics damping="0.5" friction="0.1"/>
     </joint>
 
-    <!-- camera base left -->
     <joint name="camera_joint_base_left" type="fixed">
         <axis xyz="0 1 0"/>
         <origin rpy="0 0 -1.57" xyz="0.12 -0.15 0.02"/>
@@ -107,7 +106,6 @@
 
     <link name="camera_link_optical_base_left"></link>
 
-    <!-- camera base right -->
     <joint name="camera_base_joint_right" type="fixed">
         <axis xyz="0 1 0"/>
         <origin rpy="0 0 -1.57" xyz="-0.12 -0.15 0.1"/>
@@ -267,9 +265,7 @@
                 </contact>
                 <friction>
                     <ode>
-                        <mu>1.0</mu>                        <!-- Static friction coefficient -->
-                        <mu2>1.0</mu2>                        <!-- Sliding friction coefficient -->
-                    </ode>
+                        <mu>1.0</mu>                        <mu2>1.0</mu2>                        </ode>
                 </friction>
             </surface>
         </collision>
@@ -311,9 +307,7 @@
                 </contact>
                 <friction>
                     <ode>
-                        <mu>1.0</mu>                        <!-- Static friction coefficient -->
-                        <mu2>1.0</mu2>                        <!-- Sliding friction coefficient -->
-                    </ode>
+                        <mu>1.0</mu>                        <mu2>1.0</mu2>                        </ode>
                 </friction>
             </surface>
         </collision>
@@ -327,7 +321,6 @@
         <dynamics damping="0.5" friction="0.10"/>
     </joint>
 
-    <!-- camera gripper left (kept as requested) -->
     <joint name="camera_joint_gripper_1" type="fixed">
         <axis xyz="0 1 0"/>
         <origin rpy="0 -1.57 1.57" xyz="-0.08 -0.095 0.012"/>
@@ -364,7 +357,6 @@
 
     <link name="camera_link_optical_gripper_1"></link>
 
-    <!-- camera gripper right (kept as requested) -->
     <joint name="camera_joint_gripper_2" type="fixed">
         <axis xyz="0 1 0"/>
         <origin rpy="0 -1.57 1.57" xyz="0.08 -0.095 0.012"/>
@@ -401,14 +393,6 @@
 
     <link name="camera_link_optical_gripper_2"></link>
 
-
-    <!-- camera gripper -->
-    <!-- camera gripper -->
-    <!-- camera gripper -->
-    <!-- camera gripper -->
-    <!-- camera gripper -->
-    <!-- camera gripper -->
-
     <link name="Gripper_1">
         <inertial>
             <origin xyz="0.0204003994868009 0.0334764538131697 0.063230838084357" rpy="0 0 0" />
@@ -438,9 +422,7 @@
                 </contact>
                 <friction>
                     <ode>
-                        <mu>1.0</mu>                        <!-- Static friction coefficient -->
-                        <mu2>1.0</mu2>                        <!-- Sliding friction coefficient -->
-                    </ode>
+                        <mu>1.0</mu>                        <mu2>1.0</mu2>                        </ode>
                 </friction>
             </surface>
         </collision>
@@ -482,9 +464,7 @@
                 </contact>
                 <friction>
                     <ode>
-                        <mu>1.0</mu>                        <!-- Static friction coefficient -->
-                        <mu2>1.0</mu2>                        <!-- Sliding friction coefficient -->
-                    </ode>
+                        <mu>1.0</mu>                        <mu2>1.0</mu2>                        </ode>
                 </friction>
             </surface>
         </collision>
@@ -497,264 +477,8 @@
         <axis xyz="0 0 -1" />
         <limit lower="-0.0355" upper="0" effort="100" velocity="10" />
     </joint>
-  
 
-    <!-- Transmissions for main joints -->
-    <transmission name="trans_Joint_1">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="Joint_1">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="Link_1_motor">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-            <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-    </transmission>
-    <transmission name="trans_Joint_2">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="Joint_2">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="Link_2_motor">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-            <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-    </transmission>
-    <transmission name="trans_Joint_3">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="Joint_3">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="Link_3_motor">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-            <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-    </transmission>
-    <transmission name="trans_Joint_4">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="Joint_4">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="Link_4_motor">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-            <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-    </transmission>
-    <transmission name="trans_Joint_5">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="Joint_5">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="Link_5_motor">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-            <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-    </transmission>
-    <transmission name="trans_Joint_6">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="Joint_6">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="Link_6_motor">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-            <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-    </transmission>
-
-    <transmission name="trans_Finger_1">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="Finger_1">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="Gripper_1_motor">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-            <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-    </transmission>
-    <transmission name="trans_Finger_2">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="Finger_2">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="Gripper_2_motor">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-            <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-    </transmission>
-
-    
-    <!-- <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/</robotNamespace>
-        </plugin>
-    </gazebo> -->
-
-    <!-- Camera sensors (all kept as requested)
-    <gazebo reference="camera_link_base_left">
-        <sensor type="camera" name="camera_base">
-            <visualize>true</visualize>
-            <update_rate>30.0</update_rate>
-            <camera name="head">
-                <horizontal_fov>1.3962634</horizontal_fov>
-                <image>
-                    <width>800</width>
-                    <height>800</height>
-                    <format>R8G8B8</format>
-                </image>
-                <clip>
-                    <near>0.02</near>
-                    <far>300</far>
-                </clip>
-                <noise>
-                    <type>gaussian</type> -->
-                    <!-- Noise is sampled independently per pixel on each frame.
-                That pixel's noise value is added to each of its color
-                channels, which at that point lie in the range [0,1]. -->
-                    <!-- <mean>0.0</mean>
-                    <stddev>0.007</stddev>
-                </noise>
-            </camera>
-            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-                <alwaysOn>true</alwaysOn>
-                <updateRate>0.0</updateRate>
-                <cameraName>camera_base_left</cameraName>
-                <imageTopicName>image_raw</imageTopicName>
-                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-                <frameName>camera_link_base_left</frameName>
-                <hackBaseline>0.07</hackBaseline>
-                <distortionK1>0.0</distortionK1>
-                <distortionK2>0.0</distortionK2>
-                <distortionK3>0.0</distortionK3>
-                <distortionT1>0.0</distortionT1>
-                <distortionT2>0.0</distortionT2>
-            </plugin>
-        </sensor>
-    </gazebo> -->
-
-    <!-- <gazebo reference="camera_link_base_right">
-        <sensor type="camera" name="camera_base_2">
-            <visualize>true</visualize>
-            <update_rate>30.0</update_rate>
-            <camera name="head">
-                <horizontal_fov>1.3962634</horizontal_fov>
-                <image>
-                    <width>800</width>
-                    <height>800</height>
-                    <format>R8G8B8</format>
-                </image>
-                <clip>
-                    <near>0.02</near>
-                    <far>300</far>
-                </clip>
-                <noise>
-                    <type>gaussian</type> -->
-                    <!-- Noise is sampled independently per pixel on each frame.
-                That pixel's noise value is added to each of its color
-                channels, which at that point lie in the range [0,1]. -->
-                    <!-- <mean>0.0</mean>
-                    <stddev>0.007</stddev>
-                </noise>
-            </camera>
-            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-                <alwaysOn>true</alwaysOn>
-                <updateRate>0.0</updateRate>
-                <cameraName>camera_base_right</cameraName>
-                <imageTopicName>image_raw</imageTopicName>
-                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-                <frameName>camera_base_right</frameName>
-                <hackBaseline>0.07</hackBaseline>
-                <distortionK1>0.0</distortionK1>
-                <distortionK2>0.0</distortionK2>
-                <distortionK3>0.0</distortionK3>
-                <distortionT1>0.0</distortionT1>
-                <distortionT2>0.0</distortionT2>
-            </plugin> -->
-        <!-- </sensor>
-    </gazebo>
-
-    <gazebo reference="camera_link_gripper_left">
-        <sensor type="camera" name="camera_gripper_1">
-            <visualize>true</visualize>
-            <update_rate>30.0</update_rate>
-            <camera name="head">
-                <horizontal_fov>1.3962634</horizontal_fov>
-                <image>
-                    <width>800</width>
-                    <height>800</height>
-                    <format>R8G8B8</format>
-                </image>
-                <clip>
-                    <near>0.02</near>
-                    <far>300</far>
-                </clip>
-                <noise>
-                    <type>gaussian</type> -->
-                    <!-- Noise is sampled independently per pixel on each frame.
-                That pixel's noise value is added to each of its color
-                channels, which at that point lie in the range [0,1]. -->
-                    <!-- <mean>0.0</mean>
-                    <stddev>0.007</stddev>
-                </noise>
-            </camera> -->
-            <!-- <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-                <alwaysOn>true</alwaysOn>
-                <updateRate>0.0</updateRate>
-                <cameraName>camera_gripper_left</cameraName>
-                <imageTopicName>image_raw</imageTopicName>
-                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-                <frameName>camera_link_gripper_left</frameName>
-                <hackBaseline>0.07</hackBaseline>
-                <distortionK1>0.0</distortionK1>
-                <distortionK2>0.0</distortionK2>
-                <distortionK3>0.0</distortionK3>
-                <distortionT1>0.0</distortionT1>
-                <distortionT2>0.0</distortionT2>
-            </plugin>
-        </sensor> -->
-    <!-- </gazebo> -->
-
-    <!-- <gazebo reference="camera_link_gripper_right"> -->
-        <!-- <sensor type="camera" name="camera_gripper_2"> -->
-            <!-- <visualize>true</visualize> -->
-            <!-- <update_rate>30.0</update_rate> -->
-            <!-- <camera name="head"> -->
-                <!-- <horizontal_fov>1.3962634</horizontal_fov> -->
-                <!-- <image> -->
-                    <!-- <width>800</width>
-                    <height>800</height>
-                    <format>R8G8B8</format>
-                </image>
-                <clip>
-                    <near>0.02</near>
-                    <far>300</far> -->
-                <!-- </clip> -->
-                <!-- <noise> -->
-                    <!-- <type>gaussian</type> -->
-                    <!-- Noise is sampled independently per pixel on each frame.
-                That pixel's noise value is added to each of its color
-                channels, which at that point lie in the range [0,1]. -->
-                    <!-- <mean>0.0</mean> -->
-                    <!-- <stddev>0.007</stddev> -->
-                <!-- </noise> -->
-            <!-- </camera>
-            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-                <alwaysOn>true</alwaysOn>
-                <updateRate>0.0</updateRate>
-                <cameraName>camera_gripper_right</cameraName>
-                <imageTopicName>image_raw</imageTopicName>
-                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-                <frameName>camera_link_gripper_right</frameName>
-                <hackBaseline>0.07</hackBaseline>
-                <distortionK1>0.0</distortionK1>
-                <distortionK2>0.0</distortionK2>
-                <distortionK3>0.0</distortionK3>
-                <distortionT1>0.0</distortionT1>
-                <distortionT2>0.0</distortionT2>
-            </plugin>
-        </sensor>
-    </gazebo> -->
-
-   <ros2_control name="GazeboSimSystem" type="system">
+    <ros2_control name="GazeboSimSystem" type="system">
     <hardware>
         <plugin>gz_ros2_control/GazeboSimSystem</plugin>
     </hardware>
@@ -808,7 +532,7 @@
 
     <gazebo>
         <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-            <parameters>${find my_robotic_arm}/config/my_controllers.yaml</parameters>
+            <parameters>$(find my_robotic_arm)/config/my_controllers.yaml</parameters>
         </plugin>
     </gazebo>
 
