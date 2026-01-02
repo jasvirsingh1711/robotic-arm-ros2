@@ -1,0 +1,15 @@
+#################################
+# MoveIt Servo Configuration
+#################################
+move_group_name: "arm_group"  # Must match your SRDF
+command_in_type: "speed_units"
+command_frame_id: "base_link"
+cartesian_command_in_topic: "/delta_twist_cmds"
+
+linear_scale: 0.4
+rotational_scale: 0.8
+
+check_collisions: true
+collision_check_rate: 10.0
+low_pass_filter_coeff: 2.0
+publish_period: 0.034

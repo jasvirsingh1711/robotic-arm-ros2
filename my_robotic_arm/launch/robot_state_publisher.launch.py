@@ -15,7 +15,7 @@ def generate_launch_description():
     
     # Finding the path for URDF file
     pkg_share = get_package_share_directory(pkg_name)
-    urdf_file = os.path.join(pkg_share, 'urdf', 'Arm_Urdf.urdf')
+    urdf_file = os.path.join(pkg_share, 'urdf', 'arm_urdf.urdf')
     config_file = os.path.join(pkg_share, 'config', 'my_controllers.yaml')
 
     # Read the URDF file content

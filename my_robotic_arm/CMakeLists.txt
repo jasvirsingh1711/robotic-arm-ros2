@@ -23,3 +23,22 @@ install(DIRECTORY
 )
 
 ament_package()
+
+
+find_package(moveit_servo REQUIRED)
+
+find_package(moveit_ros_planning REQUIRED) # <--- Added
+find_package(tf2_ros REQUIRED)             # <--- Added
+
+add_executable(simple_servo_node src/simple_servo.cpp)
+ament_target_dependencies(simple_servo_node 
+  rclcpp 
+  moveit_servo 
+  moveit_ros_planning  # <--- Added
+  tf2_ros              # <--- Added
+)
+
+install(TARGETS
+  simple_servo_node
+  DESTINATION lib/${PROJECT_NAME}
+)
