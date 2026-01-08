@@ -1,0 +1,42 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    gripper_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+arm_controller:
+  ros__parameters:
+    joints:
+      - z_axis
+      - link_1
+      - link_2
+      - link_3
+      - wrist_1
+      - gripper-wrist  # Added the wrist rotation joint here
+      
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+gripper_controller:
+  ros__parameters:
+    joints:
+      - claw1-slide
+      - claw2-slide
+      - finger1-rotate
+      - finger2-rotate
+      
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity

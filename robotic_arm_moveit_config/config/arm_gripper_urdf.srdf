@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="arm_gripper_urdf">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="gripper_group">
+        <joint name="claw1-slide"/>
+        <joint name="finger1-rotate"/>
+        <joint name="claw2-slide"/>
+        <joint name="finger2-rotate"/>
+    </group>
+    <group name="arm_group">
+        <joint name="virtual_link"/>
+        <joint name="world_joint"/>
+        <joint name="z_axis"/>
+        <joint name="link_1"/>
+        <joint name="link_2"/>
+        <joint name="link_3"/>
+        <joint name="wrist_1"/>
+        <joint name="gripper-wrist"/>
+    </group>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="gripper_group" parent_link="gripper-base" group="gripper_group" parent_group="arm_group"/>
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="virtual_link" type="fixed" parent_frame="world" child_link="base_link"/>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_link" link2="link2" reason="Never"/>
+    <disable_collisions link1="base_link" link2="zaxis" reason="Adjacent"/>
+    <disable_collisions link1="claw1" link2="finger1" reason="Adjacent"/>
+    <disable_collisions link1="claw1" link2="gripper-base" reason="Adjacent"/>
+    <disable_collisions link1="claw1" link2="link1" reason="Never"/>
+    <disable_collisions link1="claw1" link2="link2" reason="Never"/>
+    <disable_collisions link1="claw1" link2="wrist1" reason="Never"/>
+    <disable_collisions link1="claw2" link2="finger2" reason="Adjacent"/>
+    <disable_collisions link1="claw2" link2="gripper-base" reason="Adjacent"/>
+    <disable_collisions link1="claw2" link2="link1" reason="Never"/>
+    <disable_collisions link1="claw2" link2="link2" reason="Never"/>
+    <disable_collisions link1="claw2" link2="wrist1" reason="Never"/>
+    <disable_collisions link1="finger1" link2="finger2" reason="Default"/>
+    <disable_collisions link1="finger1" link2="gripper-base" reason="Never"/>
+    <disable_collisions link1="finger1" link2="link2" reason="Never"/>
+    <disable_collisions link1="finger1" link2="wrist1" reason="Never"/>
+    <disable_collisions link1="finger2" link2="gripper-base" reason="Never"/>
+    <disable_collisions link1="finger2" link2="link2" reason="Never"/>
+    <disable_collisions link1="finger2" link2="wrist1" reason="Never"/>
+    <disable_collisions link1="gripper-base" link2="link1" reason="Never"/>
+    <disable_collisions link1="gripper-base" link2="link2" reason="Never"/>
+    <disable_collisions link1="gripper-base" link2="wrist1" reason="Adjacent"/>
+    <disable_collisions link1="link1" link2="link2" reason="Adjacent"/>
+    <disable_collisions link1="link1" link2="wrist1" reason="Never"/>
+    <disable_collisions link1="link1" link2="zaxis" reason="Adjacent"/>
+    <disable_collisions link1="link2" link2="link3" reason="Adjacent"/>
+    <disable_collisions link1="link2" link2="wrist1" reason="Never"/>
+    <disable_collisions link1="link2" link2="zaxis" reason="Never"/>
+    <disable_collisions link1="link3" link2="wrist1" reason="Adjacent"/>
+    <disable_collisions link1="claw1" link2="claw2" reason="User defined" />
+    <disable_collisions link1="finger1" link2="finger2" reason="User defined" />
+    <disable_collisions link1="claw1" link2="finger2" reason="User defined" />
+    <disable_collisions link1="claw2" link2="finger1" reason="User defined" />
+
+</robot>

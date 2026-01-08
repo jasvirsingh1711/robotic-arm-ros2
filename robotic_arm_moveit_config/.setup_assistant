@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: robotic_arm
+    relative_path: urdf/arm_gripper_urdf.urdf
+  srdf:
+    relative_path: config/arm_gripper_urdf.srdf
+  package_settings:
+    author_name: jasvir
+    author_email: b25353@students.iitmandi.ac.in
+    generated_timestamp: 1767807594
