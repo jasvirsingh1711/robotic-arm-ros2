@@ -60,12 +60,12 @@ def generate_launch_description():
     
     if robot_description_content is not None:
         robot_description_content = robot_description_content.replace(
-            '${find robotic_arm}/config/my_controllers.yaml', 
+            '$(find robotic_arm)/config/my_controllers.yaml', 
             controllers_file_path
         )
         
         robot_description_content = robot_description_content.replace(
-            '${find my_robotic_arm}/config/my_controllers.yaml', 
+            '$(find robotic_arm)/config/my_controllers.yaml', 
             controllers_file_path
         )
 

@@ -14,6 +14,9 @@ controller_manager:
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
+    servo_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
 arm_group_controller:
   ros__parameters:
     joints:
@@ -37,6 +40,20 @@ gripper_group_controller:
       - finger2-rotate
     command_interfaces:
       - position
+    state_interfaces:
+      - position
+      - velocity
+
+servo_controller:
+  ros__parameters:
+    joints:
+      - z_axis
+      - link_1
+      - link_2
+      - link_3
+      - wrist_1
+    command_interfaces:
+      - velocity
     state_interfaces:
       - position
       - velocity

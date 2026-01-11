@@ -1,0 +1,31 @@
+#################################
+# MoveIt Servo Configuration
+#################################
+move_group_name: arm_group
+
+# properties of the controller
+command_in_type: "speed_units" # "unitless" (>1) or "speed_units" (m/s, rad/s)
+scale:
+  # Scale parameters are proportional to the command_in_type
+  linear:  0.4  # Max linear velocity (m/s)
+  rotational: 0.8 # Max angular velocity (rad/s)
+  # Joint jogging commands
+  joint: 0.2
+
+# What frame are the incoming commands in? (Usually base_link or world)
+planning_frame: base_link 
+
+# What is the tip of the robot? (The part you want to move with the joystick)
+robot_link_command_frame: gripper-base   # CHANGE THIS to your end-effector link name (e.g., wrist_1, gripper_base, etc.)
+
+# Topic names
+cartesian_command_in_topic: ~/delta_twist_cmds  # Topic to listen for Twist commands
+joint_command_in_topic: ~/delta_joint_cmds
+status_topic: ~/status
+command_out_topic: /servo_controller/commands # Must match the controller you made in Step 1
+
+# Collision checking
+check_collisions: true
+collision_check_rate: 10.0 # Hz
+self_collision_proximity_threshold: 0.01
+scene_collision_proximity_threshold: 0.02

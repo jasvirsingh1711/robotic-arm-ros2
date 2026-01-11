@@ -709,7 +709,7 @@
 
 <gazebo>
         <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-            <parameters>${find my_robotic_arm}/config/my_controllers.yaml</parameters>
+            <parameters>$(find robotic_arm)/config/my_controllers.yaml</parameters>
         </plugin>
     </gazebo>
 
